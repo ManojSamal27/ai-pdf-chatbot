@@ -5,7 +5,7 @@ import os
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # Load environment variables
@@ -68,10 +68,9 @@ if uploaded_file and st.session_state.vectorstore is None:
     )
 
     # Create vector database
-    vectorstore = Chroma.from_documents(
-        docs,
-        embeddings,
-        persist_directory="vectorstore"
+    vectorstore = FAISS.from_documents(
+    docs,
+    embeddings
     )
 
     # Save vectorstore in session
