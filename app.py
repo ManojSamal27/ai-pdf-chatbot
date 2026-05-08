@@ -40,7 +40,7 @@ uploaded_file = st.file_uploader(
 
 # Process PDF
 if uploaded_file and st.session_state.vectorstore is None:
-
+os.makedirs("uploads", exist_ok=True)
     # Save uploaded PDF
     pdf_path = f"uploads/{uploaded_file.name}"
 
