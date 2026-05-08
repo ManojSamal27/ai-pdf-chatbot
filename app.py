@@ -40,14 +40,15 @@ uploaded_file = st.file_uploader(
 
 # Process PDF
 if uploaded_file and st.session_state.vectorstore is None:
-os.makedirs("uploads", exist_ok=True)
+
+    os.makedirs("uploads", exist_ok=True)
+
     # Save uploaded PDF
     pdf_path = f"uploads/{uploaded_file.name}"
 
     with open(pdf_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-
-    st.success("PDF uploaded successfully")
+        st.success("PDF uploaded successfully")
 
     # Load PDF
     loader = PyPDFLoader(pdf_path)
